@@ -14,7 +14,7 @@
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Name</label>
                         <div class="relative flex items-center">
-                            <input name="name" type="text" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter name" @error('name') is-invalid @enderror"/>
+                            <input name="name" type="text" class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600 @error('name') is-invalid @enderror" placeholder="Enter name" required/>
                         </div>
                         @error('name')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -24,7 +24,7 @@
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Email</label>
                         <div class="relative flex items-center">
-                            <input name="email" type="text" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter email" @error('email') is-invalid @enderror"/>
+                            <input name="email" type="text" class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600 @error('email') is-invalid @enderror" placeholder="Enter email" required/>
                         </div>
                         @error('email')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
@@ -34,7 +34,7 @@
                     <div>
                         <label class="text-gray-800 text-sm mb-2 block">Password</label>
                         <div class="relative flex items-center">
-                            <input name="password" type="password" required class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600" placeholder="Enter password" @error('password') is-invalid @enderror"/>
+                            <input name="password" type="password" class="w-full text-gray-800 text-sm border border-gray-300 px-4 py-3 rounded-md outline-blue-600 @error('password') is-invalid @enderror" placeholder="Enter password" required/>
                         </div>
                         @error('password')
                             <span class="text-red-500 text-sm">{{ $message }}</span>
