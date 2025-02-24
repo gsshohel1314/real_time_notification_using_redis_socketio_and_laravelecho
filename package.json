@@ -15,6 +15,10 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
-        "flowbite": "^3.1.2"
+        "flowbite": "^3.1.2",
+        "ioredis": "^5.5.0",
+        "laravel-echo": "^2.0.2",
+        "socket.io": "^4.8.1",
+        "socket.io-client": "^4.8.1"
     }
 }
