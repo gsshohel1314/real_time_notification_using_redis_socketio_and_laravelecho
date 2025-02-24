@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreate;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,8 @@ class PostController extends Controller
             'title'     => $request->title,
             'body'      => $request->body
         ]);
+
+        event(new PostCreate($post));
 
         return response()->json([
             'data' => $post

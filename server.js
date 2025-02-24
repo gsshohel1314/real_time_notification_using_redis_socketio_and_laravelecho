@@ -12,28 +12,34 @@ const io = new Server(server, {
 
 const redis = new Redis();
 
-redis.subscribe('posts', (err, count) => {
+// Subscribe to Redis Channel
+redis.subscribe('posts-channel', (err, count) => {
     if (err) {
-        console.error('Failed to subscribe: %s', err.message);
+        console.error(`[REDIS ERROR] Subscription failed: ${err.message}`);
     } else {
-        console.log(`Subscribed successfully! This client is currently subscribed to ${count} channels.`);
+        console.log(`[REDIS] Successfully subscribed to ${count} channel(s).`);
     }
 });
 
+// Listening for messages from Redis
 redis.on('message', (channel, message) => {
     const event = JSON.parse(message);
-    console.log(`Message received from channel ${event.event}: ${channel}`);
+    console.log(`[REDIS MESSAGE] Event: ${event.event} | Channel: ${channel}`);
+
+    // Emitting event to all connected clients
     io.emit(event.event, channel, event.data);
+    console.log(`[SOCKET.IO] Event emitted: ${event.event} | Data:`, event.data);
 });
 
+// Handle new client connections
 io.on('connection', (socket) => {
-    console.log('a user connected');
+    console.log(`[SOCKET.IO] New client connected: ${socket.id}`);
 
     socket.on('disconnect', () => {
-        console.log('user disconnected');
+        console.log(`[SOCKET.IO] Client disconnected: ${socket.id}`);
     });
 });
 
 server.listen(6001, () => {
-    console.log('listening on *:6001');
+    console.log(`[SERVER] Listening for WebSocket connections on port :6001`);
 });
